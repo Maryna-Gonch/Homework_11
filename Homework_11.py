@@ -47,11 +47,12 @@ def add_contact(name: str, *args: str) -> str:
     if name in phones:
         return "Contact exists! You can only change this contact"
 
-    possible_birthday = args[-1]
     birthday = None
-    if len(possible_birthday.split("-")) == 3 and len(possible_birthday) == 10:
-        birthday = possible_birthday
-        args = args[:-1]
+    if len(args) > 0:
+        possible_birthday = args[-1]
+        if len(possible_birthday.split("-")) == 3 and len(possible_birthday) == 10:
+            birthday = possible_birthday
+            args = args[:-1]
 
     lst_phones: list[address_book_11.Phone] = []
     for phone_ in args:
@@ -79,11 +80,12 @@ def change(name: str, *args: str) -> str:
     if not (name in phones):
         return "Create contact to change it!"
 
-    possible_birthday = args[-1]
     birthday = None
-    if len(possible_birthday.split("-")) == 3 and len(possible_birthday) == 10:
-        birthday = possible_birthday
-        args = args[:-1]
+    if len(args) > 0:
+        possible_birthday = args[-1]
+        if len(possible_birthday.split("-")) == 3 and len(possible_birthday) == 10:
+            birthday = possible_birthday
+            args = args[:-1]
 
     lst_phones: list[address_book_11.Phone] = []
     for phone_ in args:
