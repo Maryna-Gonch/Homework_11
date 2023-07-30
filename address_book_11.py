@@ -85,6 +85,7 @@ class Record:
             return f"{self.name}: {', '.join(str(phone) for phone in self.phones)} with birthday on {self.birthday}"
 
 
+
 class AddressBook(UserDict):
     def __init__(self):
         super().__init__()
@@ -97,10 +98,14 @@ class AddressBook(UserDict):
     def __next__(self):
         if self.__iterator_counter * self.__n <= len(self.data):
             self.__iterator_counter += 1
-            return self.data.items()[self.__iterator_counter*self.__n:self.__iterator_counter*(self.__n+1)+1]
+            return list(self.data.values())[(self.__iterator_counter-1)*self.__n:self.__iterator_counter*self.__n]
         self.__iterator_counter = 0
         raise StopIteration
 
+    def __iter__(self):
+        return self
+
     def iterator(self, N: int):
         self.__n = N
+        self.__iterator_counter = 0
         return self
